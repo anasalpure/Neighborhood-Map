@@ -1,0 +1,202 @@
+
+ h1 ,h2 ,h3 ,h4 h5
+ button ,input {
+  font-family: 'Coda';
+ }
+ 
+  
+.focusable{
+  cursor: pointer;
+}
+
+
+.navbar{
+  position: fixed;
+  top: 0;
+  background: #333333db;
+  width: 100%;
+  z-index: 12;
+  transition: all 0.5s ease-in-out;
+}
+
+@media (min-width: 400px) {
+  .navbar {
+    max-width: 300px;
+  }
+}
+
+.navbar .logo img {
+  display: block;
+  width: 54px;
+} 
+a.logo:hover:before,
+a.logo:focus:before {
+  content: " ";
+  display: block;
+  box-shadow: -1px 9px 29px 7px #ffffffb0;
+  top: 16px;
+  position: relative;
+}
+.navbar .logo {
+  float: right;
+}
+
+
+
+.collapse{
+  clear: both;
+  width: 100%;
+  z-index: 12;
+  display: none;
+  color: #d6e7f9;
+}
+
+.collapse.showing{
+  display: block;
+  opacity: 0;
+  height: 0;
+  transform: translatex(-100%);
+}
+
+.collapse.show{
+  display: block;
+  opacity: 1;
+  height: 100%;
+  transform: translatex(0);
+}
+
+.collapse >div{
+  padding: 12px;
+}
+
+.menu {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    float: left;
+  }
+.menu li{
+      display:block;
+      list-style-type: none;
+      position: relative;
+      transition: all 0.5s linear;   
+      padding: 12px;
+}
+
+.menu li a{
+  color:#fff;
+  font-weight: bold;
+  opacity: .8; 
+  text-decoration: unset;
+ }
+
+
+
+.menu li::before{
+  content: ' ';
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  transition: all 0.5s linear;
+  background: #2b2b2b;
+  top: 0;
+  left: 0;
+}
+
+.menu li:hover:before,
+.menu li:focus:before{
+  width: 100%;
+  padding: 12px;
+}
+
+
+
+
+
+
+/* navbar tagler*/
+.toggler {
+  margin: 9px 15px;
+  position: relative;
+  float: left;
+  width: 25px;
+  height: 25px;
+  
+}
+
+.toggler:hover span ,
+.toggler:focus span,
+.toggler input:focus ~ span{
+  box-shadow: 5px 4px 34px 10px #e6e0a4;
+}
+
+
+.toggler input {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 1;
+}
+/* on close menu */
+.toggler span {
+  width: 100%;
+  height: 2px;
+  background: #d6e7f9;
+  box-shadow: 1px 1px 7px #fff;
+  border-radius: 5px;
+  position: absolute;
+  margin: 25% auto;
+  transform-origin: 0px 0px;
+  transition: .40s;
+}
+.toggler span:before {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: #d6e7f9;
+  box-shadow: 1px 1px 7px #fff;
+  border-radius: 5px;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  transform-origin: 0px 0px;
+  transition: .40s;
+}
+.toggler span:after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: #d6e7f9;
+  box-shadow: 1px 1px 7px #fff;
+  border-radius: 5px;
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  transform-origin: 0px 0px;
+  transition: .40s;
+}
+
+/* on open menu */
+.toggler input:checked ~ span {
+  background: transparent;    
+  box-shadow: none;
+
+}
+.toggler input:checked ~ span:before {
+
+  background: #d6e7f9;
+  transform: rotate(45deg) translateX(-50%);
+}
+.toggler input:checked ~ span:after {
+  top: 8px;
+  background: #d6e7f9;
+  box-shadow: 1px 1px 7px #fff;
+  transform: rotate(-45deg) translateX(-55%)
+}

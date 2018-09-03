@@ -1,5 +1,6 @@
 import React from 'react'
 import './App.css'
+import NavMenu from './Components/Navbar/NavMenu'
 
 
 class BooksApp extends React.Component {
@@ -10,7 +11,7 @@ class BooksApp extends React.Component {
   
     return (
       <div className="app">
-            <h1> Hi </h1>
+            <NavMenu/>
       </div>
     )
   }
