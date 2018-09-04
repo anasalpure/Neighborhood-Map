@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
 import NavMenu from './Components/Navbar/NavMenu'
-
+import Map from './Components/Map/Map'
 
 class BooksApp extends React.Component {
 
@@ -12,6 +12,7 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
             <NavMenu/>
+            <Map />
       </div>
     )
   }
