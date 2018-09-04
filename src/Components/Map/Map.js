@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GoogleMaps from './GoogleMaps'
 import styles from './styles'
+import locations from './locations'
 import './map.css'
 
 
@@ -30,6 +31,19 @@ class Maps extends Component {
        styles :styles
      });
      this.map.addListener('click' ,e=>console.log(e.latLng.toJSON()))
+     
+     this. markers=this.googleMaps.getMarkersFromlocations(locations , this.map)
+     // Create an onclick event to open the infowindow at each marker.
+     this.markers.forEach( marker=>
+        marker.addListener('click', ()=> {
+            this.populateInfoWindow(marker, 'infowindow');
+        })
+     )
+     this.infowindow = new window.google.maps.InfoWindow();
+ }
+
+ populateInfoWindow=(marker , infowindow)=>{
+     console.log('anas')
  }
 
 

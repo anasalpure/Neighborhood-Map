@@ -45,6 +45,64 @@ class GoogleMaps{
         this.loaded=true;
     }
 
+    
+    getMarkersFromlocations(locations,map){
+        var markers=[];
+        // Style the markers a bit. This will be our listing marker icon.
+        var defaultIcon = this.makeMarkerIcon('defaultIcon');
+
+        // Create a "highlighted location" marker color for when the user
+        // mouses over the marker.
+        var highlightedIcon = this.makeMarkerIcon('highlightedIcon');
+
+        // The following group uses the location array to create an array of markers on initialize.
+        for (var i = 0; i < locations.length; i++) {
+          // Get the position from the location array.
+          var position = locations[i].location;
+          var title = locations[i].title;
+          // Shapes define the clickable region of the icon. The type defines an HTML
+          var shape = {
+            coords: [0, 0, 0, 90, 80, 20, 18, 1],
+            type: 'poly'
+          };
+          // Create a marker per location, and put into markers array.
+          var marker = new window.google.maps.Marker({
+            position: position,
+            title: title,
+            animation: window.google.maps.Animation.DROP, //or BOUNCE
+            icon: defaultIcon,
+            id: i,
+            map : map,
+            shape :shape
+          });
+          // Push the marker to our array of markers.
+          markers.push(marker);
+
+          // Two event listeners - one for mouseover, one for mouseout,
+          // to change the colors back and forth.
+          marker.addListener('mouseover', function() {
+            this.setIcon(highlightedIcon);
+          });
+          marker.addListener('mouseout', function() {
+            this.setIcon(defaultIcon);
+          });
+
+
+        }
+        return markers;
+    }
+
+    makeMarkerIcon(markername) {
+        var url =`/assets/${markername==='highlightedIcon'?'highlightedIcon':'defaultIcon'}.png`;
+        var image = {
+            url,
+            size: new window.google.maps.Size(80, 80),
+            origin: new window.google.maps.Point(0, 0),
+            anchor: new window.google.maps.Point(17, 34),
+            scaledSize: new window.google.maps.Size(40, 40)
+        };
+        return image;
+    }
 
 }
 
