@@ -82,9 +82,11 @@ class GoogleMaps{
           // to change the colors back and forth.
           marker.addListener('mouseover', function() {
             this.setIcon(highlightedIcon);
+            this.setAnimation(window.google.maps.Animation.BOUNCE);
           });
           marker.addListener('mouseout', function() {
             this.setIcon(defaultIcon);
+            this.setAnimation(null);
           });
 
 
@@ -96,7 +98,7 @@ class GoogleMaps{
         var url =`/assets/${markername==='highlightedIcon'?'highlightedIcon':'defaultIcon'}.png`;
         var image = {
             url,
-            size: new window.google.maps.Size(80, 80),
+            size: new window.google.maps.Size(40, 40),
             origin: new window.google.maps.Point(0, 0),
             anchor: new window.google.maps.Point(17, 34),
             scaledSize: new window.google.maps.Size(40, 40)

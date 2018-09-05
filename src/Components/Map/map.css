@@ -25,3 +25,33 @@
       #search-within-time-text {
         width: 84%;
       }
+
+      .info-window{
+        font-size: 12px;
+        position: relative;
+        transition: all 1s ease-in-out;
+      }
+
+      .info-window h1{
+        color: #176c84;
+        border-bottom: 1px solid #c5ad00;
+        box-shadow: 1px 1px 1px #e8e89d;
+        padding-left: 21px;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      .info-window h1::after{
+        content: '';
+        display: block;
+        background: #c5ad00;
+        width: 20px;
+        height: 10px;
+        position: absolute;
+        top: 17px;
+        left: 0px
+      }
+
+      .info-window p{
+        color: #2b2b2b;
+        font-size: 14px;
+      }
