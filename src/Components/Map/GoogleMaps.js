@@ -58,8 +58,14 @@ class GoogleMaps{
         // The following group uses the location array to create an array of markers on initialize.
         for (var i = 0; i < locations.length; i++) {
           // Get the position from the location array.
-          var position = locations[i].location;
-          var title = locations[i].title;
+          const location=locations[i].location;
+          const {lat ,lng} = location;
+          const title = location.address;
+          const desc = {
+            City :location.city ,
+            Country : location.country , 
+            CrossStreet :location.crossStreet
+          }
           // Shapes define the clickable region of the icon. The type defines an HTML
           var shape = {
             coords: [0, 0, 0, 90, 80, 20, 18, 1],
@@ -67,17 +73,17 @@ class GoogleMaps{
           };
           // Create a marker per location, and put into markers array.
           var marker = new window.google.maps.Marker({
-            position: position,
+            position: {lat ,lng},
             title: title,
             animation: window.google.maps.Animation.DROP, //or BOUNCE
             icon: defaultIcon,
-            id: i,
             map : map,
-            shape :shape
+            shape :shape,
+            desc :desc
           });
           // Push the marker to our array of markers.
           markers.push(marker);
-
+         
           // Two event listeners - one for mouseover, one for mouseout,
           // to change the colors back and forth.
           marker.addListener('mouseover', function() {

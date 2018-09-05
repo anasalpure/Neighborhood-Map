@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GoogleMaps from './GoogleMaps'
 import styles from './styles'
-import locations from './locations'
+
 import './map.css'
 import Infowindow from './Infowindow'
 
@@ -35,34 +35,37 @@ class Maps extends Component {
 
     map.addListener('click' ,e=>console.log(e.latLng.toJSON()))
     
-    this.markers=this.googleMaps.getMarkersFromlocations(locations , map)
+    //update the state 
+    this.setState({map});
 
+  }
+ 
+  refreshMarkers=()=>{
+    this.markers=this.googleMaps.getMarkersFromlocations(this.props.locations , this.state.map);
     // Create an onclick event to open the infowindow at each marker.
     this.markers.forEach( (marker,index)=>
       marker.addListener('mouseover', ()=> {
         this.setState({activeMarker:index})
       })
     )
-    //update the state 
-    this.setState({map});
-
- }
+  }
 
 
-
+  componentDidUpdate(prevProps, prevState, snapshot){
+    if(prevProps.locations !== this.props.locations)
+    this.state.map && this.refreshMarkers();
+  }
 
   render(){
     const {map , activeMarker}=this.state;
-   return (
-    <React.Fragment>
-        <div id='map'> </div>
-        {this.state.map&&
-          <Infowindow  marker={this.markers[activeMarker]} map={map}  ></Infowindow>
-        }
-    </React.Fragment> 
-
-
-   )
+    return (
+      <React.Fragment>
+          <div id='map'> </div>
+          {map&&
+            <Infowindow  marker={this.markers[activeMarker]} map={map}  ></Infowindow>
+          }
+      </React.Fragment> 
+    )
   }
 
 

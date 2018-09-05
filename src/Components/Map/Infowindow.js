@@ -41,7 +41,12 @@ class Infowindow extends React.Component {
             {marker&& 
                 <React.Fragment>         
                     <h1>{marker.title}</h1>
-                    <p> {'desc'} </p>
+                    <div >
+                        {marker.title}  <br/>
+                        Country : { marker.desc.Country} <br/>
+                        City : { marker.desc.City}  <br/>
+                        Cross Street : { marker.desc.CrossStreet}  <br/>
+                    </div>
                     {children} 
                 </React.Fragment> 
             } 
