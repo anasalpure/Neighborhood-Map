@@ -21,15 +21,11 @@ function getTransitionClass(status) {
   return transitionClassOf[status] || 'collapse';
 }
 
-function getHeight(node) {
-  return node.scrollHeight;
+function getHeight() {
+  return window.innerHeight||'100%';
 }
 
 class Collapse extends Component {
-  constructor(props) {
-    super(props);
-
-  }
 
  
 
@@ -46,7 +42,8 @@ class Collapse extends Component {
 
 
     const transitionStyle = {
-      transition: 'all 0.3s ease-in-out'
+      transition: 'all 0.3s ease-in-out' ,
+      minHeight : getHeight()
     };
 
     return (

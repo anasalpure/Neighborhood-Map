@@ -39,7 +39,7 @@ class GoogleMaps{
         js.async = true;
         js.defer = true;
         js.src = `https://maps.googleapis.com/maps/api/js?libraries=${this.libraries}&key=${this.key}&v=3.34&callback=initMap`;
-
+              
         fjs.parentNode.insertBefore(js, fjs);
 
         this.loaded=true;
@@ -48,6 +48,8 @@ class GoogleMaps{
     
     getMarkersFromlocations(locations,map){
         var markers=[];
+        //define boundes of map
+        var bounds = new window.google.maps.LatLngBounds();
         // Style the markers a bit. This will be our listing marker icon.
         var defaultIcon = this.makeMarkerIcon('defaultIcon');
 
@@ -77,10 +79,12 @@ class GoogleMaps{
             title: title,
             animation: window.google.maps.Animation.DROP, //or BOUNCE
             icon: defaultIcon,
+            opacity :0.8,
             map : map,
             shape :shape,
             desc :desc
           });
+          bounds.extend({lat , lng});
           // Push the marker to our array of markers.
           markers.push(marker);
          
@@ -97,6 +101,7 @@ class GoogleMaps{
 
 
         }
+        map.fitBounds(bounds);
         return markers;
     }
 

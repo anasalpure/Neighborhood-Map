@@ -14,7 +14,7 @@ class Infowindow extends React.Component {
 
     toggle=()=>{
         const {marker , map} =this.props;
-        if (this.infowindow.marker != marker) {
+        if (this.infowindow.marker !== marker) {
             // Clear the infowindow content to give the streetview time to load.
             this.infowindow.setContent('');
             this.infowindow.marker = marker;

@@ -30,11 +30,19 @@ class Maps extends Component {
     var map = new window.google.maps.Map(document.getElementById('map'), {
       center: {lat: 25.203041406382805, lng: 55.275247754990005},
       zoom: 13,
-      styles :styles
+      styles :styles ,
+      zoomControlOptions: {
+        position: window.google.maps.ControlPosition.RIGHT_BOTTOM,
+        style: window.google.maps.ZoomControlStyle.SMALL
+      },
+      streetViewControlOptions: {
+        position: window.google.maps.ControlPosition.RIGHT_CENTER
+      },
+      mapTypeControl: false,
     });
 
     map.addListener('click' ,e=>console.log(e.latLng.toJSON()))
-    
+  //  map.controls[window.google.maps.ControlPosition.LEFT_CENTER].push( '<NavMenu id="NavbarControle" > </NavMenu>' ); 
     //update the state 
     this.setState({map});
 
@@ -56,7 +64,9 @@ class Maps extends Component {
     this.state.map && this.refreshMarkers();
   }
 
+
   render(){
+  
     const {map , activeMarker}=this.state;
     return (
       <React.Fragment>
