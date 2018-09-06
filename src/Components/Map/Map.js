@@ -49,6 +49,9 @@ class Maps extends Component {
   }
  
   refreshMarkers=()=>{
+    //clear previously painted markers
+    this.markers.map( marker=>marker.setMap(null) )
+
     this.markers=this.googleMaps.getMarkersFromlocations(this.props.locations , this.state.map);
     // Create an onclick event to open the infowindow at each marker.
     this.markers.forEach( (marker,index)=>

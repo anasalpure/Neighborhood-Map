@@ -39,26 +39,24 @@ class NavMenu  extends React.Component {
                     <div className="input-wraper">
                             <input className="form-control"
                             id="inputField"
-                            placeholder="type yor seadesa"
+                            placeholder="search by name or type"
                             autoComplete="true"
                             aria-label="Search for nearby restaurants"
+                            onChange={this.props.search}
                             />
                     </div>
                     <button className="btn btn-search">Go</button>
                 </div>
 
                   <ul className="menu">
-                      <li className="menu-item" tabIndex="0" >
-                          <a href="#" className="menu-link"  >Dubai</a>
-                      </li>
 
-                      <li className="menu-item" tabIndex="0">
-                          <a href="#" className="menu-link"  >abu dhabi</a>
-                      </li>
+                    {this.props.locations.map( item=>
+                        <li className="menu-item" tabIndex="0" key={item.id} >
+                            <a href="#" className="menu-link"  >{item.location.address||'no name'}</a>
+                        </li>
+                    )}
+                
 
-                      <li className="menu-item" tabIndex="0">
-                          <a href="#" className="menu-link"  >Ajman</a>
-                      </li>
                   </ul>
           </Collapse>
 
