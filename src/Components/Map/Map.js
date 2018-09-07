@@ -14,7 +14,6 @@ class Maps extends Component {
     super(props);
     this.state={
       map :null,
-      activeMarker:-1
     }
     this.googleMaps=null;
     this.markers = [];
@@ -54,13 +53,24 @@ class Maps extends Component {
 
     this.markers=this.googleMaps.getMarkersFromlocations(this.props.locations , this.state.map);
     // Create an onclick event to open the infowindow at each marker.
-    this.markers.forEach( (marker,index)=>
+    this.markers.forEach( marker=>
       marker.addListener('mouseover', ()=> {
-        this.setState({activeMarker:index})
+        this.props.select(marker.id)
       })
     )
   }
 
+  getFirstMarker=(id)=>{
+    for(let marker of this.markers){
+      if (marker.id===id)
+        return marker
+    }
+    return null
+  }
+
+  componentWillMount(){
+    this.setState({activeMarker:this.props.activeMarker})
+  }
 
   componentDidUpdate(prevProps, prevState, snapshot){
     if(prevProps.locations !== this.props.locations)
@@ -69,13 +79,13 @@ class Maps extends Component {
 
 
   render(){
-  
-    const {map , activeMarker}=this.state;
+    
+    const {map}=this.state;
     return (
       <React.Fragment>
           <div id='map'> </div>
           {map&&
-            <Infowindow  marker={this.markers[activeMarker]} map={map}  ></Infowindow>
+            <Infowindow  marker={this.getFirstMarker(this.props.activeMarker)} map={map}  ></Infowindow>
           }
       </React.Fragment> 
     )

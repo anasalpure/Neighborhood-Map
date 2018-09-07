@@ -20,7 +20,8 @@ class BooksApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      locations: []
+      locations: [] ,
+      activeMarker :''
     };
   }
 
@@ -33,8 +34,8 @@ class BooksApp extends React.Component {
 
   }
 
-  search =({target})=>{
-    params["query"] = target.value;
+  search =(value)=>{
+    params["query"] = value;
     foursquare.venues.getVenues(params)
     .then(res=> {
       this.setState({ locations: res.response.venues });
@@ -42,12 +43,16 @@ class BooksApp extends React.Component {
     });
   }
 
+  select=(id= '')=>{
+    this.setState({ activeMarker: id });
+  }
+
   render() {
   
     return (
       <div className="app">
-            <NavMenu locations={this.state.locations} search={this.search}/>
-            <Map locations={this.state.locations} />
+            <NavMenu locations={this.state.locations} search={this.search} select={this.select}/>
+            <Map locations={this.state.locations} select={this.select} activeMarker={this.state.activeMarker} />
       </div>
     )
   }

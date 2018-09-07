@@ -13,25 +13,25 @@ html {
   box-sizing: inherit;
 }
 
-
-html, body, .root {
+html,
+body,
+.root {
   background-color: #bfbfbf;
   margin: 0;
   padding: 0;
   height: 100%;
   overflow-x: hidden;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
+:focus {
+  outline: none;
+}
 
-:focus{
-   outline: none;
- }
-
- .no-select {
+.no-select {
   user-select: none;
-  -moz-user-select : none;
-  -webkit-user-select : none;
-  -ms-user-select : none;
- }
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
 

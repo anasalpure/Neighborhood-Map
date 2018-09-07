@@ -37,7 +37,7 @@ class Infowindow extends React.Component {
         }
 
         return (
-            <div className="info-window" ref={this.infoView} style={style} >
+            <div className="info-window" ref={this.infoView} style={style} id="infoWindow" >
             {marker&& 
                 <React.Fragment>         
                     <h1>{marker.title}</h1>

@@ -82,7 +82,8 @@ class GoogleMaps{
             opacity :0.8,
             map : map,
             shape :shape,
-            desc :desc
+            desc :desc ,
+            id :locations[i].id
           });
           bounds.extend({lat , lng});
           // Push the marker to our array of markers.
