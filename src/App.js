@@ -59,7 +59,6 @@ class BooksApp extends React.Component {
     foursquare.venues.getVenues(params)
       .then(res=> {
         this.setState({ locations: res.response.venues });
-        console.log(res.response.venues )
       });
 
   }
