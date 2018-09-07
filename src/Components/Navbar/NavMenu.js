@@ -40,7 +40,13 @@ class NavMenu  extends React.Component {
 
           <Collapse  isOpen={this.state.isOpen} >
                 <div>
-                    <label htmlFor="inputField" >Search for</label>
+                    <label htmlFor="citiesSelect" >Search in</label>
+                    <select  onChange={this.props.setCity} id='citiesSelect'>
+                        <option value="none" disabled>select a city...</option>
+                        {this.props.cities.map( (city,index)=>
+                          <option value={index} key={city.name} >{city.name}</option>
+                        )}
+                    </select>
                     <div className="input-wraper">
                             <input className="form-control"
                             id="inputField"
@@ -58,7 +64,7 @@ class NavMenu  extends React.Component {
 
                     {locations.map( item=>
                         <li className="menu-item" tabIndex="0" key={item.id}
-                           onMouseOver={()=>select(item.id)} onClick={()=>select(item.id)} onFocus={()=>select(item.id)} aria-describedby='infoWindow'>
+                            onClick={()=>select(item.id)} onFocus={()=>select(item.id)} aria-describedby='infoWindow'>
                             <a href="#" className="menu-link"  >{item.location.address||'no name'}</a>
                         </li>
                     )}
