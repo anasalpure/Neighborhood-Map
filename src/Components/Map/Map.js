@@ -73,8 +73,10 @@ class Maps extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot){
+    //for first execute
+    if(!prevProps) this.state.map && this.refreshMarkers();
     if(prevProps.locations !== this.props.locations)
-    this.state.map && this.refreshMarkers();
+      this.state.map && this.refreshMarkers();
   }
 
 
